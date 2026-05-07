@@ -26,18 +26,17 @@
             theme: {
                 extend: {
                     colors: {
-                        luxury: {
-                            50: '#F8FAFC',
-                            100: '#F1F5F9',
-                            200: '#E2E8F0',
-                            300: '#CBD5E1',
-                            400: '#94A3B8',
-                            500: '#64748B',
-                            600: '#475569',
-                            700: '#334155',
-                            800: '#1E293B',
-                            900: '#0F172A',
-                            950: '#020617',
+                        earth: {
+                            50: '#FDFBF7',  // Very Light Ivory
+                            100: '#F5F2EB', // Warm Ivory (Main BG)
+                            200: '#E8E3D8', // Sand
+                            300: '#D5CEC0', // Darker Sand
+                            400: '#B0A99A', // Greige
+                            500: '#8A8272', // Warm Taupe
+                            600: '#8A6D55', // Muted Clay / Terracotta Accent
+                            700: '#544D44', // Deep Taupe
+                            800: '#3D3832', // Dark Espresso
+                            900: '#2C2A26', // Charcoal Brown (Darkest)
                         }
                     },
                     fontFamily: {
@@ -45,28 +44,16 @@
                         serif: ['Playfair Display', 'serif'],
                     },
                     boxShadow: {
-                        'glass': '0 8px 32px 0 rgba(15, 23, 42, 0.1)',
-                        'soft': '0 20px 40px -15px rgba(0,0,0,0.05)',
-                        'elegant': '0 10px 30px -10px rgba(15, 23, 42, 0.2)',
+                        'editorial': '0 20px 40px -15px rgba(44, 42, 38, 0.1)',
+                        'subtle': '0 4px 20px -2px rgba(44, 42, 38, 0.05)',
                     },
                     animation: {
-                        'float': 'float 8s ease-in-out infinite',
-                        'float-delayed': 'float 8s ease-in-out 4s infinite',
                         'marquee': 'marquee 50s linear infinite',
-                        'fade-in-up': 'fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards',
                     },
                     keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-15px)' },
-                        },
                         marquee: {
                             '0%': { transform: 'translateX(0%)' },
                             '100%': { transform: 'translateX(-50%)' },
-                        },
-                        fadeInUp: {
-                            '0%': { opacity: '0', transform: 'translateY(40px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
                         }
                     }
                 }
@@ -76,165 +63,139 @@
 
     <!-- Custom CSS -->
     <style>
-        /* Smooth Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #0F172A; }
-        ::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #64748B; }
+        /* Smooth Custom Scrollbar - Earthy Tones */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #F5F2EB; }
+        ::-webkit-scrollbar-thumb { background: #B0A99A; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #8A6D55; }
 
-        /* General Typography Styles */
-        body { background-color: #F8FAFC; color: #1E293B; overflow-x: hidden; }
-        .text-gradient {
-            background: linear-gradient(to right, #64748B, #334155);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+        body { background-color: #F5F2EB; color: #2C2A26; overflow-x: hidden; }
 
-        /* Glassmorphism Panels */
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-        }
-        .glass-panel-dark {
-            background: rgba(15, 23, 42, 0.75);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        /* Reveal Animations via Intersection Observer */
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
+        /* Reveal Animations */
+        .reveal { opacity: 0; transform: translateY(20px); transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
         .reveal.active { opacity: 1; transform: translateY(0); }
         .reveal-delay-1 { transition-delay: 0.15s; }
         .reveal-delay-2 { transition-delay: 0.3s; }
         
         /* Interactive Elements */
-        .hover-lift { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease; }
-        .hover-lift:hover { transform: translateY(-8px); box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.15); }
+        .editorial-hover { transition: all 0.4s ease; }
+        .editorial-hover:hover { background-color: #FDFBF7; box-shadow: 0 10px 30px -10px rgba(44, 42, 38, 0.1); }
 
         /* Marquee specific */
         .marquee-container { display: flex; width: max-content; }
         .marquee-container:hover { animation-play-state: paused; }
-
-        /* Roadmap Line Effect */
-        .roadmap-line {
-            background: linear-gradient(to bottom, transparent, #94A3B8, transparent);
-        }
     </style>
 
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body class="antialiased selection:bg-luxury-800 selection:text-white">
+<body class="antialiased selection:bg-earth-600 selection:text-white">
 
     <!-- Navigation -->
     <nav class="fixed w-full z-50 transition-all duration-500" id="navbar">
         <div class="max-w-7xl mx-auto px-6 py-4">
-            <div class="glass-panel rounded-2xl flex justify-between items-center px-6 py-3 shadow-glass transition-all duration-300" id="nav-container">
-                <a href="#" class="flex items-center gap-3 group">
-                    <img src="https://github.com/agelmet/KATSAMAKA/blob/main/Gemini_Generated_Image_r5gn8xr5gn8xr5gn.png?raw=true" alt="Βασιλική Κατσαμάκα Logo" class="h-16 w-auto drop-shadow-2xl transition-transform duration-500 group-hover:scale-105">
+            <div class="bg-earth-50/90 backdrop-blur-md border border-earth-200/60 flex justify-between items-center px-8 py-3 shadow-sm transition-all duration-300" id="nav-container">
+                <a href="#" class="flex items-center gap-3">
+                    <img src="https://github.com/agelmet/KATSAMAKA/blob/main/Gemini_Generated_Image_r5gn8xr5gn8xr5gn.png?raw=true" alt="Βασιλική Κατσαμάκα Logo" class="h-14 w-auto drop-shadow-md">
                 </a>
                 
                 <div class="hidden lg:flex items-center space-x-10">
-                    <a href="#about" class="text-sm font-medium text-luxury-800 hover:text-luxury-500 transition-colors tracking-wide">ΒΙΟΓΡΑΦΙΚΟ</a>
-                    <a href="#services" class="text-sm font-medium text-luxury-800 hover:text-luxury-500 transition-colors tracking-wide">ΥΠΗΡΕΣΙΕΣ</a>
-                    <a href="#roadmap" class="text-sm font-medium text-luxury-800 hover:text-luxury-500 transition-colors tracking-wide">ΠΡΟΣΕΓΓΙΣΗ</a>
-                    <a href="#reviews" class="text-sm font-medium text-luxury-800 hover:text-luxury-500 transition-colors tracking-wide">ΚΡΙΤΙΚΕΣ</a>
-                    <a href="#contact" class="px-7 py-3 bg-luxury-900 text-white rounded-full text-sm font-medium hover:bg-luxury-700 transition-all transform hover:-translate-y-1 shadow-elegant tracking-wide">ΚΛΕΙΣΤΕ ΡΑΝΤΕΒΟΥ</a>
+                    <a href="#about" class="text-sm font-medium text-earth-800 hover:text-earth-600 transition-colors tracking-widest uppercase">Βιογραφικο</a>
+                    <a href="#services" class="text-sm font-medium text-earth-800 hover:text-earth-600 transition-colors tracking-widest uppercase">Υπηρεσιες</a>
+                    <a href="#roadmap" class="text-sm font-medium text-earth-800 hover:text-earth-600 transition-colors tracking-widest uppercase">Προσεγγιση</a>
+                    <a href="#reviews" class="text-sm font-medium text-earth-800 hover:text-earth-600 transition-colors tracking-widest uppercase">Κριτικες</a>
+                    <a href="#contact" class="px-8 py-3 bg-earth-900 text-earth-50 text-xs font-semibold hover:bg-earth-600 transition-colors tracking-widest uppercase border border-earth-900 hover:border-earth-600">Ραντεβου</a>
                 </div>
 
-                <button class="lg:hidden text-luxury-900 focus:outline-none" id="mobile-menu-btn">
+                <button class="lg:hidden text-earth-900 focus:outline-none" id="mobile-menu-btn">
                     <i data-lucide="menu" class="w-7 h-7"></i>
                 </button>
             </div>
         </div>
         
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="absolute top-full left-0 w-full bg-white/95 backdrop-blur-xl shadow-2xl hidden flex-col items-center py-10 space-y-8 border-t border-luxury-100">
-            <a href="#about" class="text-lg font-medium text-luxury-900 mobile-link">ΒΙΟΓΡΑΦΙΚΟ</a>
-            <a href="#services" class="text-lg font-medium text-luxury-900 mobile-link">ΥΠΗΡΕΣΙΕΣ</a>
-            <a href="#roadmap" class="text-lg font-medium text-luxury-900 mobile-link">ΠΡΟΣΕΓΓΙΣΗ</a>
-            <a href="#reviews" class="text-lg font-medium text-luxury-900 mobile-link">ΚΡΙΤΙΚΕΣ</a>
-            <a href="#contact" class="px-8 py-4 bg-luxury-900 text-white rounded-full text-lg font-medium mobile-link shadow-elegant">ΚΛΕΙΣΤΕ ΡΑΝΤΕΒΟΥ</a>
+        <div id="mobile-menu" class="absolute top-full left-0 w-full bg-earth-50/95 backdrop-blur-xl shadow-xl hidden flex-col items-center py-10 space-y-8 border-t border-earth-200">
+            <a href="#about" class="text-lg font-medium text-earth-900 tracking-widest uppercase mobile-link">Βιογραφικο</a>
+            <a href="#services" class="text-lg font-medium text-earth-900 tracking-widest uppercase mobile-link">Υπηρεσιες</a>
+            <a href="#roadmap" class="text-lg font-medium text-earth-900 tracking-widest uppercase mobile-link">Προσεγγιση</a>
+            <a href="#reviews" class="text-lg font-medium text-earth-900 tracking-widest uppercase mobile-link">Κριτικες</a>
+            <a href="#contact" class="px-8 py-4 bg-earth-900 text-earth-50 text-sm font-semibold tracking-widest uppercase mobile-link">Ραντεβου</a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center pt-32 pb-20 overflow-hidden bg-luxury-900">
-        <!-- Abstract Background Elements -->
-        <div class="absolute inset-0 z-0">
-            <div class="absolute top-[-20%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-luxury-700/30 mix-blend-screen filter blur-[100px] animate-float"></div>
-            <div class="absolute bottom-[-10%] left-[-20%] w-[50vw] h-[50vw] rounded-full bg-luxury-800/40 mix-blend-screen filter blur-[120px] animate-float-delayed"></div>
-        </div>
-        
-        <div class="max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-16 items-center relative z-10">
-            
-            <!-- Hero Text -->
-            <div class="reveal order-2 lg:order-1 text-center lg:text-left">
-                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel-dark text-luxury-200 text-xs font-semibold mb-8 tracking-widest uppercase border-luxury-600/30">
-                    <span class="w-1.5 h-1.5 rounded-full bg-luxury-400 animate-pulse"></span>
-                    Αδειουχος Ψυχολογος & Ψυχοθεραπευτρια
-                </div>
-                <h1 class="text-5xl lg:text-7xl font-serif text-white leading-[1.15] mb-8">
-                    Ψυχοθεραπεία Gestalt:<br>
-                    <span class="text-luxury-300 italic font-light">Βρίσκοντας το Κέντρο σας</span><br>
-                    στο «Εδώ και Τώρα»
-                </h1>
-                <p class="text-lg text-luxury-300 mb-12 max-w-lg mx-auto lg:mx-0 leading-relaxed font-light">
-                    Μια ασφαλής, δημιουργική και ζωντανή προσέγγιση. Στόχος δεν είναι να «διορθωθείτε», αλλά να φωτίσετε τα τυφλά σας σημεία και να αναλάβετε την ευθύνη των επιλογών σας.
-                </p>
-                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-5">
-                    <a href="#contact" class="w-full sm:w-auto px-8 py-4 bg-white text-luxury-900 rounded-full font-semibold hover:bg-luxury-100 transition-colors shadow-elegant flex items-center justify-center gap-3 group">
-                        ΚΛΕΙΣΤΕ ΣΥΝΕΔΡΙΑ
-                        <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
-                    </a>
-                    <a href="#about" class="w-full sm:w-auto px-8 py-4 bg-transparent border border-white/20 text-white rounded-full font-medium hover:border-white/60 hover:bg-white/5 transition-all backdrop-blur-sm flex items-center justify-center">
-                        ΠΕΡΙΣΣΟΤΕΡΑ
-                    </a>
-                </div>
-            </div>
+    <!-- Hero Section (Structural Editorial Design) -->
+    <section class="relative pt-32 pb-16 min-h-screen flex items-center bg-earth-100">
+        <div class="max-w-7xl mx-auto px-6 w-full">
+            <!-- Boxed Layout -->
+            <div class="flex flex-col lg:flex-row border border-earth-300 bg-earth-50 shadow-editorial relative z-10 reveal">
+                
+                <!-- Text Column -->
+                <div class="lg:w-3/5 p-10 lg:p-20 flex flex-col justify-center border-b lg:border-b-0 lg:border-r border-earth-300 relative">
+                    <div class="absolute top-10 left-10 w-8 h-px bg-earth-400 hidden lg:block"></div>
+                    <div class="absolute top-10 left-10 w-px h-8 bg-earth-400 hidden lg:block"></div>
 
-            <!-- Hero Image -->
-            <div class="relative order-1 lg:order-2 reveal reveal-delay-1 flex justify-center lg:justify-end">
-                <div class="relative w-full max-w-[500px] aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl border border-white/10 glass-panel-dark p-2">
-                    <img src="https://github.com/agelmet/KATSAMAKA/blob/main/katsamaka.jpg?raw=true" alt="Βασιλική Κατσαμάκα" class="w-full h-full object-cover rounded-[1.5rem] opacity-90 transition-transform duration-1000 hover:scale-105 hover:opacity-100">
-                    <div class="absolute inset-0 bg-gradient-to-t from-luxury-900/80 via-transparent to-transparent pointer-events-none rounded-[1.5rem]"></div>
+                    <span class="text-earth-600 font-medium tracking-[0.2em] text-xs uppercase mb-6">Αδειουχος Ψυχολογος & Ψυχοθεραπευτρια</span>
+                    <h1 class="text-5xl lg:text-6xl font-serif text-earth-900 leading-[1.15] mb-8">
+                        Ψυχοθεραπεία Gestalt.<br>
+                        <span class="italic text-earth-700">Βρίσκοντας το Κέντρο σας</span><br>
+                        στο «Εδώ και Τώρα»
+                    </h1>
+                    <p class="text-lg text-earth-700 mb-12 max-w-lg leading-relaxed font-light">
+                        Μια ασφαλής, δημιουργική και ζωντανή προσέγγιση. Στόχος δεν είναι να «διορθωθείτε», αλλά να φωτίσετε τα τυφλά σας σημεία και να αναλάβετε την ευθύνη των επιλογών σας.
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center gap-6">
+                        <a href="#contact" class="w-full sm:w-auto px-8 py-4 bg-earth-900 text-earth-50 text-xs font-semibold hover:bg-earth-600 transition-colors tracking-widest uppercase border border-earth-900 text-center">
+                            Εναρξη Συνεδριων
+                        </a>
+                        <a href="#about" class="w-full sm:w-auto px-8 py-4 bg-transparent text-earth-900 text-xs font-semibold hover:text-earth-600 transition-colors tracking-widest uppercase border-b border-earth-900 hover:border-earth-600 text-center pb-1">
+                            Η Προσεγγιση Μου
+                        </a>
+                    </div>
                 </div>
+
+                <!-- Image Column -->
+                <div class="lg:w-2/5 relative h-[50vh] lg:h-auto overflow-hidden group">
+                    <img src="https://github.com/agelmet/KATSAMAKA/blob/main/katsamaka.jpg?raw=true" alt="Βασιλική Κατσαμάκα" class="w-full h-full object-cover object-top filter grayscale-[20%] group-hover:grayscale-0 transition-all duration-1000 transform group-hover:scale-105">
+                </div>
+
             </div>
         </div>
-        
-        <!-- Gradient transition to next section -->
-        <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-luxury-50 to-transparent z-10"></div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-32 px-6 bg-luxury-50 relative">
+    <section id="about" class="py-24 px-6 bg-earth-50 relative border-t border-earth-200">
         <div class="max-w-7xl mx-auto grid lg:grid-cols-12 gap-16 items-center">
             
+            <!-- Smaller, styled image -->
             <div class="lg:col-span-5 relative reveal">
-                <div class="aspect-[3/4] rounded-3xl overflow-hidden shadow-elegant relative animate-float">
-                    <img src="https://github.com/agelmet/KATSAMAKA/blob/main/2023-11-19.jpg?raw=true" alt="Πορτρέτο Βασιλική Κατσαμάκα" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-luxury-900/10 mix-blend-multiply pointer-events-none"></div>
+                <div class="relative w-4/5 md:w-3/4 mx-auto lg:mr-auto lg:ml-0 group cursor-pointer">
+                    <!-- Offset Border Effect -->
+                    <div class="absolute inset-0 border border-earth-600 translate-x-4 translate-y-4 rounded-tr-[4rem] rounded-bl-[4rem] z-0 transition-transform duration-700 group-hover:translate-x-2 group-hover:translate-y-2"></div>
+                    
+                    <!-- Image Wrapper -->
+                    <div class="relative z-10 rounded-tr-[4rem] rounded-bl-[4rem] overflow-hidden shadow-xl bg-earth-200">
+                        <!-- Dark Overlay that fades on hover -->
+                        <div class="absolute inset-0 bg-earth-900/10 mix-blend-multiply transition-opacity duration-700 group-hover:opacity-0 z-10 pointer-events-none"></div>
+                        <img src="https://github.com/agelmet/KATSAMAKA/blob/main/2023-11-19.jpg?raw=true" alt="Πορτρέτο Βασιλική Κατσαμάκα" class="w-full aspect-[4/5] object-cover filter grayscale-[15%] group-hover:grayscale-0 transform scale-105 group-hover:scale-100 transition-all duration-1000">
+                    </div>
                 </div>
             </div>
 
             <div class="lg:col-span-7 reveal reveal-delay-1">
-                <h2 class="text-4xl md:text-5xl font-serif text-luxury-900 mb-8">Η Φιλοσοφία & Η Πορεία</h2>
-                <div class="space-y-6 text-lg text-luxury-700 font-light leading-relaxed">
+                <h2 class="text-3xl md:text-4xl font-serif text-earth-900 mb-8 border-l-2 border-earth-600 pl-6">Η Φιλοσοφία & Η Πορεία</h2>
+                <div class="space-y-6 text-earth-800 font-light leading-relaxed">
                     <p>
                         Η <strong>Βασιλική Κατσαμάκα</strong> είναι αδειούχος Ψυχολόγος (Αρ. Αδείας: 1306/21-02-2003) και Ψυχοθεραπεύτρια. Με έδρα το ιδιωτικό της γραφείο στη Θεσσαλονίκη, το οποίο διατηρεί επιτυχώς από το 2006, συνδυάζει σχεδόν δύο δεκαετίες πυκνής κλινικής εμπειρίας με μια βαθιά ανθρωποκεντρική φιλοσοφία.
                     </p>
                     <p>
-                        Είναι απόφοιτη του τμήματος Ψυχολογίας του <strong>Αριστοτελείου Πανεπιστημίου Θεσσαλονίκης (Α.Π.Θ.)</strong> και έχει ολοκληρώσει το απαιτητικό, τετραετές πρόγραμμα εξειδίκευσης στην Ψυχοθεραπεία Gestalt στο πιστοποιημένο <strong>Gestalt Foundation</strong> της Θεσσαλονίκης. 
+                        Είναι απόφοιτη του τμήματος Ψυχολογίας του <strong>Αριστοτελείου Πανεπιστημίου Θεσσαλονίκης (Α.Π.Θ.)</strong> και έχει ολοκληρώσει το απαιτητικό, τετραετές πρόγραμμα εξειδίκευσης στην Ψυχοθεραπεία Gestalt στο πιστοποιημένο <strong>Gestalt Foundation</strong>. 
                     </p>
                     <p>
                         Η πορεία της δεν περιορίζεται μόνο στο ιδιωτικό γραφείο: έχει εργαστεί ως Ψυχολόγος και Εκπαιδεύτρια σε δεκάδες κέντρα ψυχολογικής υποστήριξης, καθώς και στα <strong>Σχολεία Δεύτερης Ευκαιρίας</strong>, στηρίζοντας έμπρακτα την πίστη της ότι κάθε άνθρωπος δικαιούται μια νέα αρχή.
                     </p>
-                    <div class="pt-6 border-t border-luxury-200">
-                        <p class="text-base text-luxury-600">
-                            Σήμερα, αναλαμβάνει ενήλικες και εφήβους, εστιάζοντας με πολυετή εξειδίκευση σε ζητήματα κατάθλιψης, άγχους και απαιτητικών διατροφικών διαταραχών. Με συνεχή επιμόρφωση προσφέρει έναν απόλυτα ασφαλή χώρο για να ανακαλύψετε την αλήθεια σας.
+                    <div class="pt-6 border-t border-earth-300 mt-8">
+                        <p class="text-sm text-earth-600 font-medium tracking-wide uppercase">
+                            Στοχος δεν ειναι να "διορθωθειτε", αλλα να αποδεχτειτε τον εαυτο σας.
                         </p>
                     </div>
                 </div>
@@ -243,73 +204,74 @@
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="py-32 px-6 bg-white relative">
+    <section id="services" class="py-24 px-6 bg-earth-100 relative">
         <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-20 reveal">
-                <span class="text-luxury-500 font-semibold tracking-[0.2em] text-xs uppercase">ΕΞΕΙΔΙΚΕΥΜΕΝΕΣ ΥΠΗΡΕΣΙΕΣ</span>
-                <h2 class="text-4xl md:text-5xl font-serif text-luxury-900 mt-4 mb-6">Τομείς Παρέμβασης</h2>
-                <div class="w-16 h-1 bg-luxury-300 mx-auto rounded-full"></div>
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal border-b border-earth-300 pb-6">
+                <div>
+                    <span class="text-earth-600 font-semibold tracking-[0.2em] text-xs uppercase">ΕΞΕΙΔΙΚΕΥΣΗ</span>
+                    <h2 class="text-4xl font-serif text-earth-900 mt-2">Τομείς Παρέμβασης</h2>
+                </div>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-8">
+            <div class="grid md:grid-cols-2 gap-x-12 gap-y-16">
                 
                 <!-- Service 1 -->
-                <div class="glass-panel p-10 rounded-3xl hover-lift reveal border border-luxury-100 group relative overflow-hidden bg-luxury-50/50">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-luxury-200 rounded-bl-full opacity-20 group-hover:scale-110 transition-transform duration-500 pointer-events-none"></div>
-                    <i data-lucide="brain" class="w-10 h-10 text-luxury-600 mb-6 group-hover:text-luxury-900 transition-colors"></i>
-                    <h3 class="text-2xl font-bold text-luxury-900 mb-4">Κατάθλιψη, Άγχος & Συναισθηματικές Διαταραχές</h3>
-                    <p class="text-luxury-600 mb-6 font-light leading-relaxed">
-                        Με πάνω από 10 χρόνια εξειδικευμένης εμπειρίας στην κλινική διαχείριση της κατάθλιψης και των αγχωδών διαταραχών, η παρέμβαση γίνεται μέσω της Ψυχοθεραπείας Gestalt. Εστιάζουμε στο πώς βιώνετε το άγχος σήμερα, σπάζοντας τον φαύλο κύκλο της εξάντλησης.
+                <div class="group reveal">
+                    <div class="flex items-center gap-4 mb-4">
+                        <span class="w-10 h-px bg-earth-600 transition-all duration-300 group-hover:w-16"></span>
+                        <h3 class="text-xl font-serif text-earth-900">Κατάθλιψη, Άγχος & Συναισθηματικές Διαταραχές</h3>
+                    </div>
+                    <p class="text-earth-700 mb-6 font-light leading-relaxed pl-14">
+                        Με πάνω από 10 χρόνια εξειδικευμένης εμπειρίας στην κλινική διαχείριση της κατάθλιψης και των αγχωδών διαταραχών. Εστιάζουμε στο πώς βιώνετε το άγχος σήμερα, σπάζοντας τον φαύλο κύκλο της εξάντλησης.
                     </p>
-                    <div class="flex flex-wrap gap-2 mt-auto">
-                        <span class="px-3 py-1 bg-white text-luxury-700 text-xs font-medium rounded-md shadow-sm border border-luxury-100">Διαχείριση Φοβιών</span>
-                        <span class="px-3 py-1 bg-white text-luxury-700 text-xs font-medium rounded-md shadow-sm border border-luxury-100">Διπολική Διαταραχή</span>
-                        <span class="px-3 py-1 bg-white text-luxury-700 text-xs font-medium rounded-md shadow-sm border border-luxury-100">Συνεδρία 60'</span>
+                    <div class="flex flex-wrap gap-2 pl-14">
+                        <span class="px-3 py-1 bg-earth-200 text-earth-800 text-xs font-medium uppercase tracking-wider">Gestalt</span>
+                        <span class="px-3 py-1 bg-earth-200 text-earth-800 text-xs font-medium uppercase tracking-wider">Διαχειριση Φοβιων</span>
                     </div>
                 </div>
 
                 <!-- Service 2 -->
-                <div class="glass-panel p-10 rounded-3xl hover-lift reveal reveal-delay-1 border border-luxury-100 group relative overflow-hidden bg-luxury-50/50">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-luxury-200 rounded-bl-full opacity-20 group-hover:scale-110 transition-transform duration-500 pointer-events-none"></div>
-                    <i data-lucide="apple" class="w-10 h-10 text-luxury-600 mb-6 group-hover:text-luxury-900 transition-colors"></i>
-                    <h3 class="text-2xl font-bold text-luxury-900 mb-4">Διατροφικές Διαταραχές</h3>
-                    <p class="text-luxury-600 mb-6 font-light leading-relaxed">
-                        Η σχέση με το φαγητό ως καθρέφτης ανείπωτων συναισθημάτων. Ειδική κατάρτιση σε ανορεξία, βουλιμικά επεισόδια και συναισθηματική υπερφαγία. Εστιάζουμε στην αποσύνδεση της αξίας σας από το βάρος και στο χτίσιμο θετικής αυτοεικόνας.
+                <div class="group reveal reveal-delay-1">
+                    <div class="flex items-center gap-4 mb-4">
+                        <span class="w-10 h-px bg-earth-600 transition-all duration-300 group-hover:w-16"></span>
+                        <h3 class="text-xl font-serif text-earth-900">Διατροφικές Διαταραχές</h3>
+                    </div>
+                    <p class="text-earth-700 mb-6 font-light leading-relaxed pl-14">
+                        Ειδική κατάρτιση σε ανορεξία, βουλιμικά επεισόδια και συναισθηματική υπερφαγία. Εστιάζουμε στην αποσύνδεση της αξίας σας από το βάρος και στο χτίσιμο μιας θετικής, στιβαρής αυτοεικόνας.
                     </p>
-                    <div class="flex flex-wrap gap-2 mt-auto">
-                        <span class="px-3 py-1 bg-white text-luxury-700 text-xs font-medium rounded-md shadow-sm border border-luxury-100">Ανορεξία / Βουλιμία</span>
-                        <span class="px-3 py-1 bg-white text-luxury-700 text-xs font-medium rounded-md shadow-sm border border-luxury-100">Παχυσαρκία</span>
-                        <span class="px-3 py-1 bg-white text-luxury-700 text-xs font-medium rounded-md shadow-sm border border-luxury-100">Αυτοεκτίμηση</span>
+                    <div class="flex flex-wrap gap-2 pl-14">
+                        <span class="px-3 py-1 bg-earth-200 text-earth-800 text-xs font-medium uppercase tracking-wider">Ανορεξια / Βουλιμια</span>
+                        <span class="px-3 py-1 bg-earth-200 text-earth-800 text-xs font-medium uppercase tracking-wider">Παχυσαρκια</span>
                     </div>
                 </div>
 
                 <!-- Service 3 -->
-                <div class="glass-panel p-10 rounded-3xl hover-lift reveal border border-luxury-100 group relative overflow-hidden bg-luxury-50/50">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-luxury-200 rounded-bl-full opacity-20 group-hover:scale-110 transition-transform duration-500 pointer-events-none"></div>
-                    <i data-lucide="users" class="w-10 h-10 text-luxury-600 mb-6 group-hover:text-luxury-900 transition-colors"></i>
-                    <h3 class="text-2xl font-bold text-luxury-900 mb-4">Εφηβεία, ΔΕΠΥ & Ταυτότητα</h3>
-                    <p class="text-luxury-600 mb-6 font-light leading-relaxed">
-                        Δομημένη υποστήριξη σε εφήβους για τη διαχείριση της ΔΕΠΥ, τον έλεγχο θυμού και την εξερεύνηση του σεξουαλικού προσανατολισμού. Δημιουργούμε ένα καταφύγιο όπου ο έφηβος νιώθει ορατός και ασφαλής.
+                <div class="group reveal">
+                    <div class="flex items-center gap-4 mb-4">
+                        <span class="w-10 h-px bg-earth-600 transition-all duration-300 group-hover:w-16"></span>
+                        <h3 class="text-xl font-serif text-earth-900">Εφηβεία, ΔΕΠΥ & Ταυτότητα</h3>
+                    </div>
+                    <p class="text-earth-700 mb-6 font-light leading-relaxed pl-14">
+                        Δομημένη υποστήριξη σε εφήβους για τη διαχείριση της ΔΕΠΥ, τον έλεγχο θυμού και την εξερεύνηση του σεξουαλικού προσανατολισμού, σε ένα καταφύγιο απόλυτης εχεμύθειας και αποδοχής.
                     </p>
-                    <div class="flex flex-wrap gap-2 mt-auto">
-                        <span class="px-3 py-1 bg-white text-luxury-700 text-xs font-medium rounded-md shadow-sm border border-luxury-100">Συνεδρίες Εφήβων</span>
-                        <span class="px-3 py-1 bg-white text-luxury-700 text-xs font-medium rounded-md shadow-sm border border-luxury-100">Διαχείριση Θυμού</span>
-                        <span class="px-3 py-1 bg-white text-luxury-700 text-xs font-medium rounded-md shadow-sm border border-luxury-100">Σεξουαλικός Προσανατολισμός</span>
+                    <div class="flex flex-wrap gap-2 pl-14">
+                        <span class="px-3 py-1 bg-earth-200 text-earth-800 text-xs font-medium uppercase tracking-wider">Εφηβοι</span>
+                        <span class="px-3 py-1 bg-earth-200 text-earth-800 text-xs font-medium uppercase tracking-wider">ΔΕΠΥ & Θυμος</span>
                     </div>
                 </div>
 
                 <!-- Service 4 -->
-                <div class="glass-panel p-10 rounded-3xl hover-lift reveal reveal-delay-1 border border-luxury-100 group relative overflow-hidden bg-luxury-50/50">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-luxury-200 rounded-bl-full opacity-20 group-hover:scale-110 transition-transform duration-500 pointer-events-none"></div>
-                    <i data-lucide="compass" class="w-10 h-10 text-luxury-600 mb-6 group-hover:text-luxury-900 transition-colors"></i>
-                    <h3 class="text-2xl font-bold text-luxury-900 mb-4">Επαγγελματικός Προσανατολισμός</h3>
-                    <p class="text-luxury-600 mb-6 font-light leading-relaxed">
-                        Βοηθάμε εφήβους να επιλέξουν σπουδές και ενήλικες να επαναπροσδιορίσουν την καριέρα τους μέσω του κορυφαίου ψυχομετρικού εργαλείου «Τεστ Άριστον». Αποκαλύπτουμε τις κρυφές δεξιότητες και τις κλίσεις σας.
+                <div class="group reveal reveal-delay-1">
+                    <div class="flex items-center gap-4 mb-4">
+                        <span class="w-10 h-px bg-earth-600 transition-all duration-300 group-hover:w-16"></span>
+                        <h3 class="text-xl font-serif text-earth-900">Επαγγελματικός Προσανατολισμός</h3>
+                    </div>
+                    <p class="text-earth-700 mb-6 font-light leading-relaxed pl-14">
+                        Μέσω του κορυφαίου ψυχομετρικού εργαλείου «Τεστ Άριστον», βοηθάμε εφήβους να επιλέξουν σπουδές και ενήλικες να επαναπροσδιορίσουν την καριέρα τους ελαχιστοποιώντας το άγχος της απόφασης.
                     </p>
-                    <div class="flex flex-wrap gap-2 mt-auto">
-                        <span class="px-3 py-1 bg-white text-luxury-700 text-xs font-medium rounded-md shadow-sm border border-luxury-100">Τεστ "Άριστον"</span>
-                        <span class="px-3 py-1 bg-white text-luxury-700 text-xs font-medium rounded-md shadow-sm border border-luxury-100">Καριέρα</span>
-                        <span class="px-3 py-1 bg-white text-luxury-700 text-xs font-medium rounded-md shadow-sm border border-luxury-100">Ενήλικες</span>
+                    <div class="flex flex-wrap gap-2 pl-14">
+                        <span class="px-3 py-1 bg-earth-200 text-earth-800 text-xs font-medium uppercase tracking-wider">Τεστ "Αριστον"</span>
+                        <span class="px-3 py-1 bg-earth-200 text-earth-800 text-xs font-medium uppercase tracking-wider">Καριερα Ενηλικων</span>
                     </div>
                 </div>
 
@@ -318,57 +280,54 @@
     </section>
 
     <!-- Roadmap Section (Η Θεραπεία ως Ολότητα) -->
-    <section id="roadmap" class="py-32 px-6 bg-luxury-900 relative overflow-hidden">
-        <div class="absolute inset-0 z-0">
-            <div class="absolute top-0 left-[20%] w-[40vw] h-[40vw] rounded-full bg-luxury-800/50 blur-[100px] pointer-events-none"></div>
-        </div>
-
-        <div class="max-w-5xl mx-auto relative z-10">
-            <div class="text-center mb-24 reveal">
-                <h2 class="text-4xl md:text-5xl font-serif text-white mb-6">Η Θεραπεία ως "Ολότητα"</h2>
-                <p class="text-luxury-300 max-w-2xl mx-auto text-lg font-light">
-                    Στην προσέγγιση Gestalt, η κεντρική έννοια είναι η «Ημιτελής Υπόθεση» (Unfinished Business). Δείτε πώς κλείνουμε τους ανοιχτούς κύκλους.
+    <section id="roadmap" class="py-24 px-6 bg-earth-900 relative">
+        <div class="max-w-4xl mx-auto relative z-10">
+            <div class="text-center mb-20 reveal">
+                <span class="text-earth-400 font-semibold tracking-[0.2em] text-xs uppercase">UNFINISHED BUSINESS</span>
+                <h2 class="text-4xl font-serif text-earth-50 mt-4 mb-6">Η Θεραπεία ως "Ολότητα"</h2>
+                <p class="text-earth-300 max-w-2xl mx-auto text-lg font-light leading-relaxed">
+                    Όλοι μας κουβαλάμε τραύματα, θυμό ή απώλειες. Αυτοί οι "ανοιχτοί κύκλοι" εξαντλούν την ψυχική σας ενέργεια. Στο γραφείο μου, η θεραπεία είναι μια ζωντανή εμπειρία.
                 </p>
             </div>
 
-            <div class="relative">
-                <!-- Vertical Line -->
-                <div class="hidden md:block absolute left-1/2 top-4 bottom-4 w-px roadmap-line transform -translate-x-1/2"></div>
+            <div class="relative border-l border-earth-700 ml-4 md:ml-0 md:border-l-0">
+                <!-- Vertical Line (Desktop) -->
+                <div class="hidden md:block absolute left-1/2 top-4 bottom-4 w-px bg-earth-700 transform -translate-x-1/2"></div>
 
-                <div class="space-y-16">
+                <div class="space-y-12">
                     
                     <!-- Step 1 -->
-                    <div class="flex flex-col md:flex-row items-center justify-between w-full reveal group">
-                        <div class="md:w-[45%] md:text-right pr-0 md:pr-12 mb-8 md:mb-0">
-                            <h4 class="text-2xl font-serif text-white mb-3">Το Παρελθόν στο "Εδώ και Τώρα"</h4>
-                            <p class="text-luxury-400 font-light leading-relaxed">Φέρνουμε το παρελθόν στο παρόν. Τραύματα, θυμός ή απώλειες που εξαντλούν την ψυχική σας ενέργεια στο σήμερα αποκτούν επιτέλους τη φωνή που δεν είχαν τότε.</p>
+                    <div class="flex flex-col md:flex-row items-start md:items-center justify-between w-full reveal group pl-8 md:pl-0 relative">
+                        <div class="md:w-[45%] md:text-right md:pr-12 mb-4 md:mb-0">
+                            <h4 class="text-xl font-serif text-earth-100 mb-2">Το Παρελθόν στο "Εδώ και Τώρα"</h4>
+                            <p class="text-earth-400 font-light leading-relaxed text-sm">Φέρνουμε το παρελθόν στο παρόν και του δίνουμε τη φωνή που δεν είχε τότε.</p>
                         </div>
-                        <div class="relative z-10 flex items-center justify-center shrink-0 w-12 h-12 rounded-full bg-luxury-800 border border-luxury-500 shadow-[0_0_30px_rgba(100,116,139,0.3)] group-hover:scale-110 group-hover:bg-luxury-700 transition-all duration-500">
-                            <span class="text-white font-bold text-sm">01</span>
+                        <div class="absolute left-[-16px] md:relative md:left-0 z-10 flex items-center justify-center shrink-0 w-8 h-8 rounded-full bg-earth-900 border border-earth-600 mt-1 md:mt-0">
+                            <span class="w-2 h-2 rounded-full bg-earth-600 group-hover:scale-150 transition-transform"></span>
                         </div>
                         <div class="md:w-[45%] hidden md:block"></div>
                     </div>
 
                     <!-- Step 2 -->
-                    <div class="flex flex-col md:flex-row-reverse items-center justify-between w-full reveal group">
-                        <div class="md:w-[45%] md:text-left pl-0 md:pl-12 mb-8 md:mb-0 text-center md:text-left">
-                            <h4 class="text-2xl font-serif text-white mb-3">Αποδοχή της Ολότητας</h4>
-                            <p class="text-luxury-400 font-light leading-relaxed">Σταματάτε να μάχεστε τον εαυτό σας. Σε ένα απόλυτα προστατευμένο περιβάλλον, σας προσκαλώ να αποδεχτείτε ολόκληρη την εμπειρία σας, χωρίς κριτική.</p>
+                    <div class="flex flex-col md:flex-row-reverse items-start md:items-center justify-between w-full reveal group pl-8 md:pl-0 relative">
+                        <div class="md:w-[45%] md:text-left md:pl-12 mb-4 md:mb-0">
+                            <h4 class="text-xl font-serif text-earth-100 mb-2">Αποδοχή της Εμπειρίας</h4>
+                            <p class="text-earth-400 font-light leading-relaxed text-sm">Σταματάτε να μάχεστε τον εαυτό σας και αποδέχεστε ολόκληρη την εμπειρία σας (Ολότητα).</p>
                         </div>
-                        <div class="relative z-10 flex items-center justify-center shrink-0 w-12 h-12 rounded-full bg-luxury-800 border border-luxury-500 shadow-[0_0_30px_rgba(100,116,139,0.3)] group-hover:scale-110 group-hover:bg-luxury-700 transition-all duration-500">
-                            <span class="text-white font-bold text-sm">02</span>
+                        <div class="absolute left-[-16px] md:relative md:left-0 z-10 flex items-center justify-center shrink-0 w-8 h-8 rounded-full bg-earth-900 border border-earth-600 mt-1 md:mt-0">
+                            <span class="w-2 h-2 rounded-full bg-earth-600 group-hover:scale-150 transition-transform"></span>
                         </div>
                         <div class="md:w-[45%] hidden md:block"></div>
                     </div>
 
                     <!-- Step 3 -->
-                    <div class="flex flex-col md:flex-row items-center justify-between w-full reveal group">
-                        <div class="md:w-[45%] md:text-right pr-0 md:pr-12 mb-8 md:mb-0">
-                            <h4 class="text-2xl font-serif text-white mb-3">Κλείνοντας τον Κύκλο</h4>
-                            <p class="text-luxury-400 font-light leading-relaxed">Να πενθήσετε ό,τι χάθηκε, να θυμώσετε με ό,τι σας αδίκησε και τελικά να απελευθερώσετε την ενέργειά σας. Ποτέ δεν είναι αργά για να ανοίξετε έναν καινούργιο, πιο φωτεινό κύκλο.</p>
+                    <div class="flex flex-col md:flex-row items-start md:items-center justify-between w-full reveal group pl-8 md:pl-0 relative">
+                        <div class="md:w-[45%] md:text-right md:pr-12 mb-4 md:mb-0">
+                            <h4 class="text-xl font-serif text-earth-100 mb-2">«Κλείνοντας τον Κύκλο»</h4>
+                            <p class="text-earth-400 font-light leading-relaxed text-sm">Να πενθήσετε, να θυμώσετε και τελικά να απελευθερώσετε την ενέργειά σας. Ποτέ δεν είναι αργά για μια νέα αρχή.</p>
                         </div>
-                        <div class="relative z-10 flex items-center justify-center shrink-0 w-12 h-12 rounded-full bg-luxury-800 border border-luxury-500 shadow-[0_0_30px_rgba(100,116,139,0.3)] group-hover:scale-110 group-hover:bg-luxury-700 transition-all duration-500">
-                            <span class="text-white font-bold text-sm">03</span>
+                        <div class="absolute left-[-16px] md:relative md:left-0 z-10 flex items-center justify-center shrink-0 w-8 h-8 rounded-full bg-earth-900 border border-earth-600 mt-1 md:mt-0">
+                            <span class="w-2 h-2 rounded-full bg-earth-600 group-hover:scale-150 transition-transform"></span>
                         </div>
                         <div class="md:w-[45%] hidden md:block"></div>
                     </div>
@@ -379,292 +338,201 @@
     </section>
 
     <!-- Reviews Marquee Section -->
-    <section id="reviews" class="py-32 bg-luxury-50 overflow-hidden border-t border-luxury-200 relative">
+    <section id="reviews" class="py-24 bg-earth-100 overflow-hidden border-t border-earth-300 relative">
         <div class="max-w-7xl mx-auto px-6 mb-16 text-center reveal">
-            <h2 class="text-4xl md:text-5xl font-serif text-luxury-900 mb-4">Εμπειρίες Θεραπευόμενων</h2>
-            <p class="text-luxury-600 font-light text-lg">Η εμπιστοσύνη σας είναι η μεγαλύτερη απόδειξη της δουλειάς μας.</p>
+            <h2 class="text-4xl font-serif text-earth-900 mb-4">Εμπειρίες Θεραπευόμενων</h2>
+            <p class="text-earth-700 font-light">Η εμπιστοσύνη σας είναι η μεγαλύτερη απόδειξη της δουλειάς μας.</p>
         </div>
 
-        <div class="w-full overflow-hidden relative pb-10">
+        <div class="w-full overflow-hidden relative pb-8">
             <!-- Fade Edges -->
-            <div class="absolute left-0 top-0 bottom-0 w-24 md:w-48 bg-gradient-to-r from-luxury-50 to-transparent z-10 pointer-events-none"></div>
-            <div class="absolute right-0 top-0 bottom-0 w-24 md:w-48 bg-gradient-to-l from-luxury-50 to-transparent z-10 pointer-events-none"></div>
+            <div class="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-earth-100 to-transparent z-10 pointer-events-none"></div>
+            <div class="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-earth-100 to-transparent z-10 pointer-events-none"></div>
             
             <div class="marquee-container animate-marquee">
-                <!-- Inner flex container. Repeated twice for infinite loop effect -->
-                <div class="flex gap-8 px-4 items-stretch">
+                <!-- Inner flex container -->
+                <div class="flex gap-6 px-3 items-stretch">
                     
-                    <!-- Base set of 9 reviews -->
-                    <!-- Review 1 -->
-                    <div class="w-[350px] md:w-[400px] bg-white p-8 rounded-3xl shadow-elegant shrink-0 border border-luxury-100 flex flex-col justify-between">
+                    <!-- Base set of Reviews -->
+                    <div class="w-[320px] bg-earth-50 p-8 rounded-none border border-earth-300 flex flex-col justify-between editorial-hover shrink-0">
                         <div>
                             <div class="flex justify-between items-start mb-6">
-                                <div>
-                                    <span class="font-bold text-luxury-900 text-xl tracking-tight">10.0</span>
-                                </div>
-                                <img src="https://raw.githubusercontent.com/agelmet/KARAZOLI/refs/heads/main/lgoodoc.jpg" class="h-6 rounded-full drop-shadow-sm" alt="Doctoranytime">
+                                <span class="font-serif text-earth-900 text-2xl">10.0</span>
+                                <img src="https://raw.githubusercontent.com/agelmet/KARAZOLI/refs/heads/main/lgoodoc.jpg" class="h-5 grayscale contrast-125 mix-blend-multiply opacity-80" alt="Doctoranytime">
                             </div>
-                            <p class="text-luxury-600 text-sm mb-6 italic leading-relaxed font-light">"Απο την πρώτη στιγμή αισθάνθηκα οικειότητα, άνεση και ζεστασιά με αποτέλεσμα να ανοιχτω πολυ ευκολα... Φευγω από κάθε ραντεβού νιώθοντας τυχερή που γνώρισα αυτόν τον άνθρωπο!"</p>
+                            <p class="text-earth-700 text-sm mb-6 italic leading-relaxed font-light">"Απο την πρώτη στιγμή αισθάνθηκα οικειότητα, άνεση και ζεστασιά... Φευγω από κάθε ραντεβού νιώθοντας τυχερή που γνώρισα αυτόν τον άνθρωπο!"</p>
                         </div>
-                        <div class="border-t border-luxury-100 pt-4 mt-auto">
-                            <p class="text-sm font-bold text-luxury-900">Μαρία</p>
-                            <p class="text-xs text-luxury-400">30 Ιανουαρίου 2023 • 1 αξιολόγηση</p>
+                        <div class="border-t border-earth-300 pt-4 mt-auto">
+                            <p class="text-sm font-semibold text-earth-900 tracking-wide uppercase">Μαρια</p>
+                            <p class="text-xs text-earth-500">30 Ιανουαρίου 2023</p>
                         </div>
                     </div>
 
-                    <!-- Review 2 -->
-                    <div class="w-[350px] md:w-[400px] bg-white p-8 rounded-3xl shadow-elegant shrink-0 border border-luxury-100 flex flex-col justify-between">
+                    <div class="w-[320px] bg-earth-50 p-8 rounded-none border border-earth-300 flex flex-col justify-between editorial-hover shrink-0">
                         <div>
                             <div class="flex justify-between items-start mb-6">
-                                <div>
-                                    <span class="font-bold text-luxury-900 text-xl tracking-tight">10.0</span>
-                                </div>
-                                <img src="https://raw.githubusercontent.com/agelmet/KARAZOLI/refs/heads/main/lgoodoc.jpg" class="h-6 rounded-full drop-shadow-sm" alt="Doctoranytime">
+                                <span class="font-serif text-earth-900 text-2xl">10.0</span>
+                                <img src="https://raw.githubusercontent.com/agelmet/KARAZOLI/refs/heads/main/lgoodoc.jpg" class="h-5 grayscale contrast-125 mix-blend-multiply opacity-80" alt="Doctoranytime">
                             </div>
-                            <p class="text-luxury-600 text-sm mb-6 italic leading-relaxed font-light">"Οι συναντήσεις μαζί της είναι σαν μία όαση ασφάλειας... Με έχει βοηθήσει πραγματικά και ουσιαστικά σε όλους τους τομείς της ζωής μου, με ενσυναίσθηση, επαγγελματισμό και αγάπη."</p>
+                            <p class="text-earth-700 text-sm mb-6 italic leading-relaxed font-light">"Οι συναντήσεις μαζί της είναι σαν μία όαση ασφάλειας... Με έχει βοηθήσει πραγματικά σε όλους τους τομείς, με ενσυναίσθηση και επαγγελματισμό."</p>
                         </div>
-                        <div class="border-t border-luxury-100 pt-4 mt-auto">
-                            <p class="text-sm font-bold text-luxury-900">Ιουστίνη</p>
-                            <p class="text-xs text-luxury-400">27 Ιανουαρίου 2023 • 1 αξιολόγηση</p>
+                        <div class="border-t border-earth-300 pt-4 mt-auto">
+                            <p class="text-sm font-semibold text-earth-900 tracking-wide uppercase">Ιουστινη</p>
+                            <p class="text-xs text-earth-500">27 Ιανουαρίου 2023</p>
                         </div>
                     </div>
 
-                    <!-- Review 3 -->
-                    <div class="w-[350px] md:w-[400px] bg-white p-8 rounded-3xl shadow-elegant shrink-0 border border-luxury-100 flex flex-col justify-between">
+                    <div class="w-[320px] bg-earth-50 p-8 rounded-none border border-earth-300 flex flex-col justify-between editorial-hover shrink-0">
                         <div>
                             <div class="flex justify-between items-start mb-6">
-                                <div>
-                                    <span class="font-bold text-luxury-900 text-xl tracking-tight">10.0</span>
-                                </div>
-                                <img src="https://raw.githubusercontent.com/agelmet/KARAZOLI/refs/heads/main/lgoodoc.jpg" class="h-6 rounded-full drop-shadow-sm" alt="Doctoranytime">
+                                <span class="font-serif text-earth-900 text-2xl">10.0</span>
+                                <img src="https://raw.githubusercontent.com/agelmet/KARAZOLI/refs/heads/main/lgoodoc.jpg" class="h-5 grayscale contrast-125 mix-blend-multiply opacity-80" alt="Doctoranytime">
                             </div>
-                            <p class="text-luxury-600 text-sm mb-6 italic leading-relaxed font-light">"Πάρα πολύ καλή! Με βοήθησε πολύ απο την πρώτη κιόλας συνεδρία!"</p>
+                            <p class="text-earth-700 text-sm mb-6 italic leading-relaxed font-light">"Πάρα πολύ καλή! Με βοήθησε πολύ απο την πρώτη κιόλας συνεδρία!"</p>
                         </div>
-                        <div class="border-t border-luxury-100 pt-4 mt-auto">
-                            <p class="text-sm font-bold text-luxury-900">Γεώργιος</p>
-                            <p class="text-xs text-luxury-400">28 Ιουνίου 2022 • 3 αξιολογήσεις</p>
+                        <div class="border-t border-earth-300 pt-4 mt-auto">
+                            <p class="text-sm font-semibold text-earth-900 tracking-wide uppercase">Γεωργιος</p>
+                            <p class="text-xs text-earth-500">28 Ιουνίου 2022</p>
                         </div>
                     </div>
 
-                    <!-- Review 4 -->
-                    <div class="w-[350px] md:w-[400px] bg-white p-8 rounded-3xl shadow-elegant shrink-0 border border-luxury-100 flex flex-col justify-between">
+                    <div class="w-[320px] bg-earth-50 p-8 rounded-none border border-earth-300 flex flex-col justify-between editorial-hover shrink-0">
                         <div>
                             <div class="flex justify-between items-start mb-6">
-                                <div>
-                                    <span class="font-bold text-luxury-900 text-xl tracking-tight">10.0</span>
-                                </div>
-                                <img src="https://raw.githubusercontent.com/agelmet/KARAZOLI/refs/heads/main/lgoodoc.jpg" class="h-6 rounded-full drop-shadow-sm" alt="Doctoranytime">
+                                <span class="font-serif text-earth-900 text-2xl">10.0</span>
+                                <img src="https://raw.githubusercontent.com/agelmet/KARAZOLI/refs/heads/main/lgoodoc.jpg" class="h-5 grayscale contrast-125 mix-blend-multiply opacity-80" alt="Doctoranytime">
                             </div>
-                            <p class="text-luxury-600 text-sm mb-6 italic leading-relaxed font-light">"Δεν υπάρχει κανένα παράπονο από πλευράς μου."</p>
+                            <p class="text-earth-700 text-sm mb-6 italic leading-relaxed font-light">"Μιλώντας με τον συνεργάτη της... κατάλαβα πως έχω να κάνω με υπεύθυνους ανθρώπους που ξέρουν τη δουλειά τους."</p>
                         </div>
-                        <div class="border-t border-luxury-100 pt-4 mt-auto">
-                            <p class="text-sm font-bold text-luxury-900">Αναστάσιος</p>
-                            <p class="text-xs text-luxury-400">13 Νοεμβρίου 2021 • 4 αξιολογήσεις</p>
+                        <div class="border-t border-earth-300 pt-4 mt-auto">
+                            <p class="text-sm font-semibold text-earth-900 tracking-wide uppercase">Κυριακος</p>
+                            <p class="text-xs text-earth-500">03 Οκτωβρίου 2021</p>
                         </div>
                     </div>
 
-                    <!-- Review 5 -->
-                    <div class="w-[350px] md:w-[400px] bg-white p-8 rounded-3xl shadow-elegant shrink-0 border border-luxury-100 flex flex-col justify-between">
+                    <div class="w-[320px] bg-earth-50 p-8 rounded-none border border-earth-300 flex flex-col justify-between editorial-hover shrink-0">
                         <div>
                             <div class="flex justify-between items-start mb-6">
-                                <div>
-                                    <span class="font-bold text-luxury-900 text-xl tracking-tight">10.0</span>
-                                </div>
-                                <img src="https://raw.githubusercontent.com/agelmet/KARAZOLI/refs/heads/main/lgoodoc.jpg" class="h-6 rounded-full drop-shadow-sm" alt="Doctoranytime">
+                                <span class="font-serif text-earth-900 text-2xl">10.0</span>
+                                <img src="https://raw.githubusercontent.com/agelmet/KARAZOLI/refs/heads/main/lgoodoc.jpg" class="h-5 grayscale contrast-125 mix-blend-multiply opacity-80" alt="Doctoranytime">
                             </div>
-                            <p class="text-luxury-600 text-sm mb-6 italic leading-relaxed font-light">"Αν και ήταν η πρώτη φορά που επισκέφτηκα ψυχολόγο και είχα αμφιβολίες νιώθω πως έκανα καλά και θα την ξαναεπισκεφτώ.."</p>
+                            <p class="text-earth-700 text-sm mb-6 italic leading-relaxed font-light">"Νιώθεις αρκετη ασφαλεια και κατανοηση. Με βοηθησε να αρχισω να ξεδιπλωνω ολες τις σκέψεις μου σιγα σιγα."</p>
                         </div>
-                        <div class="border-t border-luxury-100 pt-4 mt-auto">
-                            <p class="text-sm font-bold text-luxury-900">Ελένη</p>
-                            <p class="text-xs text-luxury-400">23 Οκτωβρίου 2021 • 2 αξιολογήσεις</p>
+                        <div class="border-t border-earth-300 pt-4 mt-auto">
+                            <p class="text-sm font-semibold text-earth-900 tracking-wide uppercase">Lampros</p>
+                            <p class="text-xs text-earth-500">10 Μαρτίου 2020</p>
                         </div>
                     </div>
 
-                    <!-- Review 6 -->
-                    <div class="w-[350px] md:w-[400px] bg-white p-8 rounded-3xl shadow-elegant shrink-0 border border-luxury-100 flex flex-col justify-between">
+                    <!-- Duplicate for infinite loop -->
+                    <div class="w-[320px] bg-earth-50 p-8 rounded-none border border-earth-300 flex flex-col justify-between editorial-hover shrink-0" aria-hidden="true">
                         <div>
                             <div class="flex justify-between items-start mb-6">
-                                <div>
-                                    <span class="font-bold text-luxury-900 text-xl tracking-tight">10.0</span>
-                                </div>
-                                <img src="https://raw.githubusercontent.com/agelmet/KARAZOLI/refs/heads/main/lgoodoc.jpg" class="h-6 rounded-full drop-shadow-sm" alt="Doctoranytime">
+                                <span class="font-serif text-earth-900 text-2xl">10.0</span>
+                                <img src="https://raw.githubusercontent.com/agelmet/KARAZOLI/refs/heads/main/lgoodoc.jpg" class="h-5 grayscale contrast-125 mix-blend-multiply opacity-80" alt="Doctoranytime">
                             </div>
-                            <p class="text-luxury-600 text-sm mb-6 italic leading-relaxed font-light">"Μιλώντας με τον εξειδικευμένο συνεργάτη της... κατάλαβα πως έχω να κάνω με ανθρώπους υπεύθυνους που ξέρουν την δουλειά τους. Ήμουν σε σύγχυση και αρχίζω να τα ξεδιαλύνω."</p>
+                            <p class="text-earth-700 text-sm mb-6 italic leading-relaxed font-light">"Απο την πρώτη στιγμή αισθάνθηκα οικειότητα, άνεση και ζεστασιά... Φευγω από κάθε ραντεβού νιώθοντας τυχερή που γνώρισα αυτόν τον άνθρωπο!"</p>
                         </div>
-                        <div class="border-t border-luxury-100 pt-4 mt-auto">
-                            <p class="text-sm font-bold text-luxury-900">Κυριάκος</p>
-                            <p class="text-xs text-luxury-400">03 Οκτωβρίου 2021 • 1 αξιολόγηση</p>
+                        <div class="border-t border-earth-300 pt-4 mt-auto">
+                            <p class="text-sm font-semibold text-earth-900 tracking-wide uppercase">Μαρια</p>
+                            <p class="text-xs text-earth-500">30 Ιανουαρίου 2023</p>
+                        </div>
+                    </div>
+                    
+                    <div class="w-[320px] bg-earth-50 p-8 rounded-none border border-earth-300 flex flex-col justify-between editorial-hover shrink-0" aria-hidden="true">
+                        <div>
+                            <div class="flex justify-between items-start mb-6">
+                                <span class="font-serif text-earth-900 text-2xl">10.0</span>
+                                <img src="https://raw.githubusercontent.com/agelmet/KARAZOLI/refs/heads/main/lgoodoc.jpg" class="h-5 grayscale contrast-125 mix-blend-multiply opacity-80" alt="Doctoranytime">
+                            </div>
+                            <p class="text-earth-700 text-sm mb-6 italic leading-relaxed font-light">"Οι συναντήσεις μαζί της είναι σαν μία όαση ασφάλειας... Με έχει βοηθήσει πραγματικά σε όλους τους τομείς, με ενσυναίσθηση και επαγγελματισμό."</p>
+                        </div>
+                        <div class="border-t border-earth-300 pt-4 mt-auto">
+                            <p class="text-sm font-semibold text-earth-900 tracking-wide uppercase">Ιουστινη</p>
+                            <p class="text-xs text-earth-500">27 Ιανουαρίου 2023</p>
                         </div>
                     </div>
 
-                    <!-- Review 7 -->
-                    <div class="w-[350px] md:w-[400px] bg-white p-8 rounded-3xl shadow-elegant shrink-0 border border-luxury-100 flex flex-col justify-between">
+                    <div class="w-[320px] bg-earth-50 p-8 rounded-none border border-earth-300 flex flex-col justify-between editorial-hover shrink-0" aria-hidden="true">
                         <div>
                             <div class="flex justify-between items-start mb-6">
-                                <div>
-                                    <span class="font-bold text-luxury-900 text-xl tracking-tight">10.0</span>
-                                </div>
-                                <img src="https://raw.githubusercontent.com/agelmet/KARAZOLI/refs/heads/main/lgoodoc.jpg" class="h-6 rounded-full drop-shadow-sm" alt="Doctoranytime">
+                                <span class="font-serif text-earth-900 text-2xl">10.0</span>
+                                <img src="https://raw.githubusercontent.com/agelmet/KARAZOLI/refs/heads/main/lgoodoc.jpg" class="h-5 grayscale contrast-125 mix-blend-multiply opacity-80" alt="Doctoranytime">
                             </div>
-                            <p class="text-luxury-600 text-sm mb-6 italic leading-relaxed font-light">"Σωστες ερωτησεις ευγενεια και ενσυναισθηση."</p>
+                            <p class="text-earth-700 text-sm mb-6 italic leading-relaxed font-light">"Πάρα πολύ καλή! Με βοήθησε πολύ απο την πρώτη κιόλας συνεδρία!"</p>
                         </div>
-                        <div class="border-t border-luxury-100 pt-4 mt-auto">
-                            <p class="text-sm font-bold text-luxury-900">Ευαγγελία</p>
-                            <p class="text-xs text-luxury-400">09 Ιουνίου 2021 • 1 αξιολόγηση</p>
-                        </div>
-                    </div>
-
-                    <!-- Review 8 -->
-                    <div class="w-[350px] md:w-[400px] bg-white p-8 rounded-3xl shadow-elegant shrink-0 border border-luxury-100 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-6">
-                                <div>
-                                    <span class="font-bold text-luxury-900 text-xl tracking-tight">10.0</span>
-                                </div>
-                                <img src="https://raw.githubusercontent.com/agelmet/KARAZOLI/refs/heads/main/lgoodoc.jpg" class="h-6 rounded-full drop-shadow-sm" alt="Doctoranytime">
-                            </div>
-                            <p class="text-luxury-600 text-sm mb-6 italic leading-relaxed font-light">"Νιώθεις αρκετη ασφαλεια και κατανοηση απο την αρχη της συζητησης. Με βοηθησε να αρχισω να ξεδιπλωνω ολες τις σκέψεις μου σιγα σιγα."</p>
-                        </div>
-                        <div class="border-t border-luxury-100 pt-4 mt-auto">
-                            <p class="text-sm font-bold text-luxury-900">Lampros</p>
-                            <p class="text-xs text-luxury-400">10 Μαρτίου 2020 • 1 αξιολόγηση</p>
-                        </div>
-                    </div>
-
-                    <!-- Review 9 -->
-                    <div class="w-[350px] md:w-[400px] bg-white p-8 rounded-3xl shadow-elegant shrink-0 border border-luxury-100 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-6">
-                                <div>
-                                    <span class="font-bold text-luxury-900 text-xl tracking-tight">10.0</span>
-                                </div>
-                                <img src="https://raw.githubusercontent.com/agelmet/KARAZOLI/refs/heads/main/lgoodoc.jpg" class="h-6 rounded-full drop-shadow-sm" alt="Doctoranytime">
-                            </div>
-                            <p class="text-luxury-600 text-sm mb-6 italic leading-relaxed font-light">"Πήγα προβληματισμένος... Η κ Κατσαμάκα κατάφερε με το πρώτο κιόλας ραντεβού να με κάνει να νιώσω ασφάλεια και αποδοχή. Νιώθω πως μπορώ να την εμπιστευτώ."</p>
-                        </div>
-                        <div class="border-t border-luxury-100 pt-4 mt-auto">
-                            <p class="text-sm font-bold text-luxury-900">Γεώργιος</p>
-                            <p class="text-xs text-luxury-400">18 Ιανουαρίου 2020 • 3 αξιολογήσεις</p>
-                        </div>
-                    </div>
-
-                    <!-- Duplicate the exact same set for seamless loop -->
-                    <!-- Review 1 Duplicate -->
-                    <div class="w-[350px] md:w-[400px] bg-white p-8 rounded-3xl shadow-elegant shrink-0 border border-luxury-100 flex flex-col justify-between" aria-hidden="true">
-                        <div>
-                            <div class="flex justify-between items-start mb-6">
-                                <div>
-                                    <span class="font-bold text-luxury-900 text-xl tracking-tight">10.0</span>
-                                </div>
-                                <img src="https://raw.githubusercontent.com/agelmet/KARAZOLI/refs/heads/main/lgoodoc.jpg" class="h-6 rounded-full drop-shadow-sm" alt="Doctoranytime">
-                            </div>
-                            <p class="text-luxury-600 text-sm mb-6 italic leading-relaxed font-light">"Απο την πρώτη στιγμή αισθάνθηκα οικειότητα, άνεση και ζεστασιά με αποτέλεσμα να ανοιχτω πολυ ευκολα... Φευγω από κάθε ραντεβού νιώθοντας τυχερή που γνώρισα αυτόν τον άνθρωπο!"</p>
-                        </div>
-                        <div class="border-t border-luxury-100 pt-4 mt-auto">
-                            <p class="text-sm font-bold text-luxury-900">Μαρία</p>
-                            <p class="text-xs text-luxury-400">30 Ιανουαρίου 2023 • 1 αξιολόγηση</p>
-                        </div>
-                    </div>
-
-                    <!-- Review 2 Duplicate -->
-                    <div class="w-[350px] md:w-[400px] bg-white p-8 rounded-3xl shadow-elegant shrink-0 border border-luxury-100 flex flex-col justify-between" aria-hidden="true">
-                        <div>
-                            <div class="flex justify-between items-start mb-6">
-                                <div>
-                                    <span class="font-bold text-luxury-900 text-xl tracking-tight">10.0</span>
-                                </div>
-                                <img src="https://raw.githubusercontent.com/agelmet/KARAZOLI/refs/heads/main/lgoodoc.jpg" class="h-6 rounded-full drop-shadow-sm" alt="Doctoranytime">
-                            </div>
-                            <p class="text-luxury-600 text-sm mb-6 italic leading-relaxed font-light">"Οι συναντήσεις μαζί της είναι σαν μία όαση ασφάλειας... Με έχει βοηθήσει πραγματικά και ουσιαστικά σε όλους τους τομείς της ζωής μου, με ενσυναίσθηση, επαγγελματισμό και αγάπη."</p>
-                        </div>
-                        <div class="border-t border-luxury-100 pt-4 mt-auto">
-                            <p class="text-sm font-bold text-luxury-900">Ιουστίνη</p>
-                            <p class="text-xs text-luxury-400">27 Ιανουαρίου 2023 • 1 αξιολόγηση</p>
-                        </div>
-                    </div>
-
-                    <!-- Review 3 Duplicate -->
-                    <div class="w-[350px] md:w-[400px] bg-white p-8 rounded-3xl shadow-elegant shrink-0 border border-luxury-100 flex flex-col justify-between" aria-hidden="true">
-                        <div>
-                            <div class="flex justify-between items-start mb-6">
-                                <div>
-                                    <span class="font-bold text-luxury-900 text-xl tracking-tight">10.0</span>
-                                </div>
-                                <img src="https://raw.githubusercontent.com/agelmet/KARAZOLI/refs/heads/main/lgoodoc.jpg" class="h-6 rounded-full drop-shadow-sm" alt="Doctoranytime">
-                            </div>
-                            <p class="text-luxury-600 text-sm mb-6 italic leading-relaxed font-light">"Πάρα πολύ καλή! Με βοήθησε πολύ απο την πρώτη κιόλας συνεδρία!"</p>
-                        </div>
-                        <div class="border-t border-luxury-100 pt-4 mt-auto">
-                            <p class="text-sm font-bold text-luxury-900">Γεώργιος</p>
-                            <p class="text-xs text-luxury-400">28 Ιουνίου 2022 • 3 αξιολογήσεις</p>
+                        <div class="border-t border-earth-300 pt-4 mt-auto">
+                            <p class="text-sm font-semibold text-earth-900 tracking-wide uppercase">Γεωργιος</p>
+                            <p class="text-xs text-earth-500">28 Ιουνίου 2022</p>
                         </div>
                     </div>
                 </div>
             </div>
             
             <div class="text-center mt-12">
-                <a href="https://www.doctoranytime.gr/d/Psychologos/katsamaka-vasiliki" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-8 py-4 bg-white border border-luxury-200 rounded-full text-sm font-semibold text-luxury-900 hover:shadow-elegant transition-all">
-                    Περισσότερα στο <img src="https://raw.githubusercontent.com/agelmet/KARAZOLI/refs/heads/main/lgoodoc.jpg" class="h-5 ml-1 rounded-sm" alt="Doctoranytime">
+                <a href="https://www.doctoranytime.gr/d/Psychologos/katsamaka-vasiliki" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-8 py-3 bg-transparent border border-earth-600 text-earth-900 text-xs font-semibold hover:bg-earth-900 hover:text-earth-50 transition-colors tracking-widest uppercase">
+                    Δειτε στο <img src="https://raw.githubusercontent.com/agelmet/KARAZOLI/refs/heads/main/lgoodoc.jpg" class="h-4 ml-1 grayscale contrast-150" alt="Doctoranytime">
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Contact & Footer Section -->
-    <footer id="contact" class="bg-luxury-950 text-white pt-24 pb-12 relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <footer id="contact" class="bg-earth-900 text-earth-100 pt-24 pb-12 border-t-8 border-earth-800">
+        <div class="max-w-7xl mx-auto px-6">
             
             <div class="grid lg:grid-cols-12 gap-16 mb-20">
                 
                 <div class="lg:col-span-5 reveal">
-                    <h3 class="text-3xl font-serif mb-6 text-white">Κάντε το Πρώτο Βήμα</h3>
-                    <p class="text-luxury-400 mb-10 font-light leading-relaxed">
+                    <span class="text-earth-500 font-semibold tracking-[0.2em] text-xs uppercase mb-4 block">ΕΠΙΚΟΙΝΩΝΙΑ</span>
+                    <h3 class="text-3xl font-serif mb-6 text-earth-50">Κάντε το Πρώτο Βήμα</h3>
+                    <p class="text-earth-400 mb-10 font-light leading-relaxed">
                         Η επούλωση ξεκινά με ένα βήμα. Επικοινωνήστε μαζί μας για να ορίσουμε την πρώτη σας συνεδρία σε ένα περιβάλλον απόλυτης αποδοχής.
                     </p>
-                    <a href="https://www.doctoranytime.gr/d/Psychologos/katsamaka-vasiliki" target="_blank" class="inline-flex items-center justify-center bg-white text-luxury-900 px-8 py-4 rounded-full font-semibold hover:bg-luxury-200 transition-colors shadow-elegant w-full sm:w-auto">
-                        ΚΛΕΙΣΤΕ ΡΑΝΤΕΒΟΥ
+                    <a href="https://www.doctoranytime.gr/d/Psychologos/katsamaka-vasiliki" target="_blank" class="inline-flex items-center justify-center px-8 py-4 bg-earth-100 text-earth-900 text-xs font-semibold hover:bg-earth-600 hover:text-white transition-colors tracking-widest uppercase border border-earth-100">
+                        Κλειστε Ραντεβου
                     </a>
                 </div>
 
                 <div class="lg:col-span-3 lg:col-start-7 reveal reveal-delay-1">
-                    <h4 class="text-sm font-semibold text-luxury-500 mb-6 uppercase tracking-widest">ΕΠΙΚΟΙΝΩΝΙΑ</h4>
-                    <ul class="space-y-6 text-luxury-300 font-light">
+                    <h4 class="text-xs font-semibold text-earth-500 mb-6 uppercase tracking-widest">ΣΤΟΙΧΕΙΑ</h4>
+                    <ul class="space-y-6 text-earth-300 font-light text-sm">
                         <li class="flex items-start gap-4">
-                            <i data-lucide="map-pin" class="w-5 h-5 text-white shrink-0 mt-0.5"></i>
+                            <i data-lucide="map-pin" class="w-4 h-4 text-earth-500 shrink-0 mt-1"></i>
                             <span>Μητροπολίτου Γενναδίου 16<br>(Πλατεία Αριστοτέλους),<br>Θεσσαλονίκη</span>
                         </li>
                         <li class="flex items-center gap-4">
-                            <i data-lucide="phone" class="w-5 h-5 text-white shrink-0"></i>
-                            <a href="tel:+306945463341" class="hover:text-white transition-colors">+30 694 546 3341</a>
+                            <i data-lucide="phone" class="w-4 h-4 text-earth-500 shrink-0"></i>
+                            <a href="tel:+306945463341" class="hover:text-earth-100 transition-colors">+30 694 546 3341</a>
                         </li>
                         <li class="flex items-center gap-4">
-                            <i data-lucide="mail" class="w-5 h-5 text-white shrink-0"></i>
-                            <a href="mailto:vkatsamaka@gmail.com" class="hover:text-white transition-colors">vkatsamaka@gmail.com</a>
+                            <i data-lucide="mail" class="w-4 h-4 text-earth-500 shrink-0"></i>
+                            <a href="mailto:vkatsamaka@gmail.com" class="hover:text-earth-100 transition-colors">vkatsamaka@gmail.com</a>
                         </li>
                     </ul>
                 </div>
 
                 <div class="lg:col-span-3 reveal reveal-delay-2">
-                    <h4 class="text-sm font-semibold text-luxury-500 mb-6 uppercase tracking-widest">ΩΡΑΡΙΟ & SOCIAL</h4>
-                    <ul class="space-y-6 text-luxury-300 font-light mb-8">
+                    <h4 class="text-xs font-semibold text-earth-500 mb-6 uppercase tracking-widest">ΩΡΑΡΙΟ & SOCIAL</h4>
+                    <ul class="space-y-6 text-earth-300 font-light text-sm mb-8">
                         <li class="flex items-center gap-4">
-                            <i data-lucide="clock" class="w-5 h-5 text-white shrink-0"></i>
-                            <span>Δευτέρα – Σάββατο<br><span class="text-sm text-luxury-400">Κατόπιν ραντεβού</span></span>
+                            <i data-lucide="clock" class="w-4 h-4 text-earth-500 shrink-0"></i>
+                            <span>Δευτέρα – Σάββατο<br><span class="text-earth-500">Κατόπιν ραντεβού</span></span>
                         </li>
                     </ul>
-                    <div class="flex gap-4 items-center">
-                        <a href="https://www.facebook.com/viky.katsamaka" target="_blank" rel="noopener noreferrer" class="hover:-translate-y-1 transition-transform">
-                            <img src="https://raw.githubusercontent.com/agelmet/Image-hosting-/refs/heads/main/icons8-facebook-480.png" alt="Facebook" class="w-8 h-8 opacity-80 hover:opacity-100 transition-opacity">
+                    <div class="flex gap-4 items-center pl-8">
+                        <a href="https://www.facebook.com/viky.katsamaka" target="_blank" rel="noopener noreferrer" class="hover:opacity-100 opacity-60 transition-opacity">
+                            <img src="https://raw.githubusercontent.com/agelmet/Image-hosting-/refs/heads/main/icons8-facebook-480.png" alt="Facebook" class="w-6 h-6 grayscale hover:grayscale-0 transition-all">
                         </a>
                     </div>
                 </div>
 
             </div>
 
-            <div class="border-t border-luxury-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 reveal">
-                <p class="text-luxury-500 text-sm font-light">© 2026 Βασιλική Κατσαμάκα. Όλα τα δικαιώματα διατηρούνται.</p>
-                <p class="text-luxury-500 text-sm font-light">
-                    Designed by <a href="https://advonmedia.com" target="_blank" rel="noopener" class="text-white font-medium hover:text-luxury-300 transition-colors">Advon Media</a>
+            <div class="border-t border-earth-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 reveal">
+                <p class="text-earth-500 text-xs font-light">© 2026 Βασιλική Κατσαμάκα. Όλα τα δικαιώματα διατηρούνται.</p>
+                <p class="text-earth-500 text-xs font-light tracking-wide">
+                    Designed by <a href="https://advonmedia.com" target="_blank" rel="noopener" class="text-earth-300 font-medium hover:text-earth-100 transition-colors uppercase">Advon Media</a>
                 </p>
             </div>
         </div>
@@ -692,17 +560,19 @@
             });
         });
 
-        // Navbar Scroll Effect (Blur & padding)
+        // Navbar Scroll Effect
         const navContainer = document.getElementById('nav-container');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
                 navContainer.classList.add('py-2');
                 navContainer.classList.remove('py-3');
-                navContainer.classList.replace('bg-white/85', 'bg-white/95');
+                navContainer.classList.add('bg-earth-50/98');
+                navContainer.classList.remove('bg-earth-50/90');
             } else {
                 navContainer.classList.add('py-3');
                 navContainer.classList.remove('py-2');
-                navContainer.classList.replace('bg-white/95', 'bg-white/85');
+                navContainer.classList.add('bg-earth-50/90');
+                navContainer.classList.remove('bg-earth-50/98');
             }
         });
 
